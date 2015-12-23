@@ -3,7 +3,7 @@ package movio.api.kafka_0_8
 import kafka.consumer._
 import scala.util.{ Try }
 
-trait KafkaConsumer {
+trait KafkaConsumer[T] {
   def topicFilter: TopicFilter
 
   def consumer: ConsumerConnector
@@ -11,9 +11,9 @@ trait KafkaConsumer {
 
   def stream: KafkaStream[String, String]
 
-  def processBatchThenCommit[T](
+  def processBatchThenCommit(
     processor: Map[String, Seq[T]] ⇒ Try[Map[String, Seq[T]]],
-    batchSize: Int 
+    batchSize: Int
   ): Try[Map[String, Seq[T]]]
 
   def shutdown:Unit 

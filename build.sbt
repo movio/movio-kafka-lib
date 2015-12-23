@@ -9,12 +9,12 @@ lazy val root = project
   .aggregate(kafkaLib_0_8)
 
 lazy val kafkaLib_0_8 = project
-  .in(file("kafka-lib_0_8"))
+  .in( file("kafka-lib_0_8") )
   .settings(
     organization:= "movio.api",
-    name := "movio-kafka-lib_0_8",
+    name := "kafka-lib_0_8",
     libraryDependencies ++= Seq(
-      "org.apache.kafka" %% "kafka" % "0.8.2.2",
+      "org.apache.kafka" %% "kafka" % "0.8.2.2"
     ),
     scalacOptions += "-feature"
   )
