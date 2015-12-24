@@ -2,8 +2,6 @@ organization := "movio.api"
 
 name := "movio-kafka-lib"
 
-crossScalaVersions := Seq("2.10.6", "2.11.7")
-
 lazy val root = project
   .in( file(".") )
   .aggregate(kafkaLib_0_8)
