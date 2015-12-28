@@ -1,7 +1,7 @@
 package movio.api.kafka_0_8
 
 import kafka.consumer._
-import scala.util.{ Try }
+import scala.util.Try
 
 trait KafkaConsumer[T] {
   def topicFilter: TopicFilter
@@ -16,5 +16,5 @@ trait KafkaConsumer[T] {
     batchSize: Int
   ): Try[Map[String, Seq[T]]]
 
-  def shutdown:Unit 
+  def shutdown: Unit
 }
