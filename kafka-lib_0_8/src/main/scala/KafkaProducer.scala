@@ -14,5 +14,5 @@ trait KafkaProducer[K, T] {
   def sendWrapped(single: K, tenant: String): Try[K]
   def sendWrapped(batch: Seq[K], tenant: String): Try[Seq[K]]
 
-  def shutdown: Unit
+  def shutdown(): Unit
 }

@@ -16,5 +16,5 @@ trait KafkaConsumer[T] {
     batchSize: Int
   ): Try[Map[String, Seq[T]]]
 
-  def shutdown: Unit
+  def shutdown(): Unit
 }
