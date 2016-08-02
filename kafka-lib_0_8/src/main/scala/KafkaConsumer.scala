@@ -16,5 +16,10 @@ trait KafkaConsumer[T] {
     batchSize: Int
   ): Try[Map[String, Seq[T]]]
 
+  def processBatchWithKeysThenCommit(
+    processor: Map[String, Seq[(String, Option[T])]] ⇒ Try[Map[String, Seq[(String, Option[T])]]],
+    batchSize: Int
+  ): Try[Map[String, Seq[(String, Option[T])]]]
+
   def shutdown(): Unit
 }
