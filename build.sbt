@@ -4,7 +4,7 @@ name := "movio-kafka-lib"
 
 lazy val root = project
   .in( file(".") )
-  .aggregate(kafkaLib_0_8)
+  .aggregate(kafkaLib_0_8, kafkaLib_0_10)
   .settings(
     publish := {},
     crossScalaVersions := Seq("2.10.6", "2.11.7")
@@ -20,6 +20,17 @@ lazy val kafkaLib_0_8 = project
     ),
     scalacOptions += "-feature"
   )
+
+lazy val kafkaLib_0_10 = project
+  .in( file("kafka-lib_0_10") )
+  .settings(
+  organization:= "movio.api",
+  name := "kafka-lib_0_10",
+  libraryDependencies ++= Seq(
+    "org.apache.kafka" %% "kafka" % "0.10.0.1"
+  ),
+  scalacOptions += "-feature"
+)
 
 releaseVersionBump := sbtrelease.Version.Bump.Minor
 releaseTagName := s"${version.value}"
