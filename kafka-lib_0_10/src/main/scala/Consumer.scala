@@ -1,15 +1,11 @@
 package movio.api.kafka_0_10
 
-import kafka.consumer._
+import org.apache.kafka.clients.consumer.KafkaConsumer
 import scala.util.Try
 
-trait KafkaConsumer[T] {
-  def topicFilter: TopicFilter
+trait Consumer[T] {
 
-  def consumer: ConsumerConnector
-  def consumerConfig: ConsumerConfig
-
-  def stream: KafkaStream[String, String]
+  def kafkaConsumer: KafkaConsumer[String, String]
 
   /**
     * Process a batch of messages with given processor function and commit
@@ -38,5 +34,5 @@ trait KafkaConsumer[T] {
     batchSize: Int
   ): Try[Map[String, Seq[(String, Option[T])]]]
 
-  def shutdown(): Unit
+  def close(): Unit = kafkaConsumer.close()
 }
