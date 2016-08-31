@@ -14,6 +14,8 @@ trait Producer[K, T] {
   def sendWrapped(single: K, tenant: String): Try[K]
   def sendWrapped(batch: Seq[K], tenant: String): Try[Seq[K]]
 
+  def flush(): Unit = kafkaProducer.flush()
+
   // If the kafkaProducer has not been flushed during send this will block
   // until all messages have been sent. It's recommended to flush in your
   // send implementations
