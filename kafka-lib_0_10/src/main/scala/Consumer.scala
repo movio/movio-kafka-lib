@@ -6,6 +6,16 @@ import scala.util.Try
 trait Consumer[T] {
 
   def kafkaConsumer: KafkaConsumer[String, String]
+  
+  def processBatch(
+    processor: Map[String, Seq[T]] ⇒ Try[Map[String, Seq[T]]],
+    batchSize: Int
+  ): Try[Map[String, Seq[T]]]
+
+  def processBatchWithKeys(
+    processor: Map[String, Seq[(String, Option[T])]] ⇒ Try[Map[String, Seq[(String, Option[T])]]],
+    batchSize: Int
+  ): Try[Map[String, Seq[(String, Option[T])]]]
 
   /**
     * Process a batch of messages with given processor function and commit
